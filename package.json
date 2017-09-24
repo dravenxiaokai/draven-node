@@ -1,0 +1,18 @@
+{
+  "name": "draven-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "./node_modules/.bin/nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.82.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
