@@ -1,4 +1,4 @@
-const Event = require('./models/event')
+const Event = require('../models/event')
 
 const event1 = new Event({
     title: 'Node.js 开发者大会'
