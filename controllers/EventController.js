@@ -1,9 +1,9 @@
 const Event = require('../models/event')
 
 const index = (req, res) => {
-    res.send({
-        message: 'hello events ~'
-    })
+    Event
+        .find()
+        .then(documents => res.send(documents))
 }
 
 module.exports = {
