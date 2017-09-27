@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const multer = require('multer')
 const loki = require('lokijs')
+const fs = require('fs')
 
 const db = new loki('uploads/uploads.json', { persistenceMethod: 'fs' })
 
@@ -33,8 +34,19 @@ app.post('/profile', upload.single('avatar'), async (req, res, next) => {
 })
 
 // app.post('/photo/upload', upload.fields([{ name: 'photos', maxCount: 3 }])
-app.post('/photos/upload', upload.array('photos', 3), (req, res, next) => {
-    res.send(req.files)
+app.post('/photos/upload', upload.array('photos', 3), async (req, res, next) => {
+    // res.send(req.files)
+    const collection = await loadCollection('uploads', db)
+    const result = collection.insert(req.files)
+    db.saveDatabase()
+    res.send(result)
+})
+
+app.get('/uploads/:id', async (req, res) => {
+    const collection = await loadCollection('uploads', db)
+    const result = collection.get(req.params.id)
+    res.setHeader('Content-Type', result.mimetype)
+    fs.createReadStream(result.path).pipe(res)
 })
 
 app.use((err, req, res, next) => {
