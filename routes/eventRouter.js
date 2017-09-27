@@ -9,5 +9,6 @@ router
 
 router.route('/events/:id')
     .get(EventController.show)
+    .patch(EventController.update)
 
 module.exports = router

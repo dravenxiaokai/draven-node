@@ -21,8 +21,18 @@ const show = (req, res) => {
         .then(document => res.send(document))
 }
 
+const update = (req, res) => {
+    const id = req.params.id
+    const body = {
+        title: req.body.title
+    }
+    Event.findByIdAndUpdate(id, { $set: body }, { new: true })
+        .then(document => res.send(document))
+}
+
 module.exports = {
     index,
     store,
-    show
+    show,
+    update
 }
