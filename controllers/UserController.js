@@ -46,7 +46,12 @@ const auth = (req, res) => {
         })
 }
 
+const me = (req, res) => {
+    res.send(`hello ~ ${req.decoded.userName}`)
+}
+
 module.exports = {
     store,
-    auth
+    auth,
+    me
 }
