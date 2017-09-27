@@ -1,12 +1,9 @@
-const http = require('http')
+const express = require('express')
+const app = express()
+const port = process.env.PORT || 3000
 
-var server = http.createServer()
-
-server.on('request', (req, res) => {
-    res.writeHead(200, {
-        'Content-Type': 'text/html'
-    })
-    res.end(`<h1>hello ~</h1>`)
+app.get('/', (req, res) => {
+    res.send('hello ~')
 })
 
-server.listen(8000)
+app.listen(port, () => console.log(`监听端口：${port}`))
