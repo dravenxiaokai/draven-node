@@ -30,9 +30,17 @@ const update = (req, res) => {
         .then(document => res.send(document))
 }
 
+const destroy = (req, res) => {
+    const id = req.params.id
+
+    Event.findByIdAndRemove(id)
+        .then(document => res.send(document))
+}
+
 module.exports = {
     index,
     store,
     show,
-    update
+    update,
+    destroy
 }
